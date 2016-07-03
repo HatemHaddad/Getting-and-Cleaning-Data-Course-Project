@@ -55,3 +55,11 @@ colnames_neat <- tolower(gsub("[^[:alpha:]]", "", colnames_neat))
 
 # Use the list for column names
 colnames(data_mean_std) <- colnames_neat
+
+### Part 5
+# Find the mean for each combination 
+data_final <- aggregate(data_mean_std[, 3:ncol(data_mean_std)], by=list(subject = data_mean_std$subject, label = data_mean_std$label),mean)
+
+
+# Write Data
+write.table(data_final, "tidy.txt",row.names=F)
