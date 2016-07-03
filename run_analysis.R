@@ -20,3 +20,6 @@ test_cbind <- cbind(test.subjects,test.labels,test.data)
 
 train_cbind <- cbind(train.subjects,train.labels,train.data)
 
+# Merge Test Data with Training Dtata - rbind()
+
+merge_data <- rbind(test_cbind,train_cbind)
