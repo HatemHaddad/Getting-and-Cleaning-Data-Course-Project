@@ -27,6 +27,7 @@ merge_data <- rbind(test_cbind,train_cbind)
 ### Part 2
 # Read fatures
 
+
 features <- read.table("features.txt", strip.white=TRUE, stringsAsFactors=FALSE)
 
 # Keep mean and standard deviation by usind grep and escape character \ 
@@ -36,3 +37,21 @@ features_mean_std <- features[grep("mean\\(\\)|std\\(\\)", features$V2), ]
 # Select mean and standard deviation from merged data
 
 data_mean_std <- merge_data[, c(1, 2, features.mean.std$V1+2)]
+
+### Part3
+# Read activity labels
+labels <- read.table("activity_labels.txt", stringsAsFactors=FALSE)
+
+data_mean_std$label <- labels[data_mean_std$label, 2]
+
+### Part4
+# list of colnames and features
+
+colnames_neat <- c("subject", "label", features_mean_std$V2)
+
+# Tidy the list
+
+colnames_neat <- tolower(gsub("[^[:alpha:]]", "", colnames_neat))
+
+# Use the list for column names
+colnames(data_mean_std) <- colnames_neat
