@@ -29,6 +29,10 @@ merge_data <- rbind(test_cbind,train_cbind)
 
 features <- read.table("features.txt", strip.white=TRUE, stringsAsFactors=FALSE)
 
+# Keep mean and standard deviation by usind grep and escape character \ 
+
 features_mean_std <- features[grep("mean\\(\\)|std\\(\\)", features$V2), ]
+
+# Select mean and standard deviation from merged data
 
 data_mean_std <- merge_data[, c(1, 2, features.mean.std$V1+2)]
