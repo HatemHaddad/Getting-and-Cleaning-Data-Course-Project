@@ -23,3 +23,12 @@ train_cbind <- cbind(train.subjects,train.labels,train.data)
 # Merge Test Data with Training Dtata - rbind()
 
 merge_data <- rbind(test_cbind,train_cbind)
+
+### Part 2
+# Read fatures
+
+features <- read.table("features.txt", strip.white=TRUE, stringsAsFactors=FALSE)
+
+features_mean_std <- features[grep("mean\\(\\)|std\\(\\)", features$V2), ]
+
+data_mean_std <- merge_data[, c(1, 2, features.mean.std$V1+2)]
